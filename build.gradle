@@ -2,11 +2,14 @@
 
 buildscript {
     repositories {
-        jcenter()
+        google()
+        //jcenter()  //可直接删除
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://dl.bintray.com/thelasterstar/maven/' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.novoda:bintray-release:0.3.4'
+        classpath 'com.android.tools.build:gradle:4.0.0'
+//        classpath 'com.novoda:bintray-release:0.8.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -14,7 +17,11 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        google()
+        //jcenter()  //可直接删除
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://dl.bintray.com/thelasterstar/maven/' }
+        maven { url "https://jitpack.io" }
     }
     tasks.withType(Javadoc) {
         options.addStringOption('Xdoclint:none', '-quiet')
