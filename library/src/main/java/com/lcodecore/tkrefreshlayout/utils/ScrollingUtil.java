@@ -235,17 +235,17 @@ public class ScrollingUtil {
                 int[] out = layoutManager.findLastCompletelyVisibleItemPositions(null);
                 int lastPosition = layoutManager.getItemCount() - 1;
                 int[] lastPositions = new int[layoutManager.getSpanCount()];
-                StringBuilder sb = new StringBuilder();
+//                StringBuilder sb = new StringBuilder();
                 for(int i=0; i<lastPositions.length; i++) {
                     lastPositions[i] = lastPosition - i;
-                    sb.append(lastPositions[i]).append(",");
+//                    sb.append(lastPositions[i]).append(",");
                 }
-                Log.i("kke", "list lastPositions = " + sb.toString());
-                sb = new StringBuilder();
-                for (int position : out) {
-                    sb.append(position).append(",");
-                }
-                Log.i("kke", "list out = " + sb.toString());
+//                Log.i("kke", "list lastPositions = " + sb.toString());
+//                sb = new StringBuilder();
+//                for (int position : out) {
+//                    sb.append(position).append(",");
+//                }
+//                Log.i("kke", "list out = " + sb.toString());
 
                 // out[]跟倒数n个完全一样才算到bottom
                 for (int position : out) {
