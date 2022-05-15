@@ -24,6 +24,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -233,11 +234,33 @@ public class ScrollingUtil {
 
                 int[] out = layoutManager.findLastCompletelyVisibleItemPositions(null);
                 int lastPosition = layoutManager.getItemCount() - 1;
+                int[] lastPositions = new int[layoutManager.getSpanCount()];
+                StringBuilder sb = new StringBuilder();
+                for(int i=0; i<lastPositions.length; i++) {
+                    lastPositions[i] = lastPosition - i;
+                    sb.append(lastPositions[i]).append(",");
+                }
+                Log.i("kke", "list lastPositions = " + sb.toString());
+                sb = new StringBuilder();
                 for (int position : out) {
-                    if (position == lastPosition) {
-                        return true;
+                    sb.append(position).append(",");
+                }
+                Log.i("kke", "list out = " + sb.toString());
+
+                // out[]跟倒数n个完全一样才算到bottom
+                for (int position : out) {
+                    boolean hasMatch = false;
+                    for(int lastPositionItem : lastPositions) {
+                        if (position == lastPositionItem) {
+                            hasMatch = true;
+                            break;
+                        }
+                    }
+                    if (!hasMatch) {
+                        return false;
                     }
                 }
+                return true;
             }
         }
         return false;
